@@ -1,18 +1,19 @@
 #import hardware used in design
-import machine
+from utime import time_ns
+import utime
 from machine import Timer, Pin, UART
 
-start = Pin(3, mode=Pin.IN, pull=Pin.PULL_UP)
-pause = Pin(4, mode=Pin.IN, pull=Pin.PULL_UP)
-reset = Pin(5, mode=Pin.IN, pull=Pin.PULL_UP)
-stop  = Pin(6, mode=Pin.IN, pull=Pin.PULL_UP)
+start_pin = Pin(2, mode=Pin.IN, pull=Pin.PULL_UP)
+pause_pin = Pin(3, mode=Pin.IN, pull=Pin.PULL_UP)
+reset_pin = Pin(4, mode=Pin.IN, pull=Pin.PULL_UP)
+stop_pin  = Pin(5, mode=Pin.IN, pull=Pin.PULL_UP)
 
 timer = Timer()
 timer_exists = False
 
 update = False
-
-mode = None
+option = 0
+mode = "Idle"
 min = 0
 sec = 0
 hsec = 0
@@ -22,30 +23,76 @@ def handler(callback_ref):
     update = True
 
 def start_handler(callback_ref):
-    start_trigger = True;
+    global option
+    option = 1
 
 def pause_handler(callback_ref):
-    pause_trigger = True;
+    global option
+    option = 2
 
 def reset_handler(callback_ref): 
-    reset_trigger = True;
+    global option
+    option = 3
 
 def stop_handler(callback_ref):
-    stop_trigger = True;
+    global option
+    option = 4
+
+def start():
+    global timer
+    global timer_exists
+    global mode
+
+    if not timer_exists:
+        timer.init(freq=100, mode=Timer.PERIODIC, callback=handler)
+        timer_exists = True
+        mode = 'Running'
+
+def pause():
+    global timer
+    global timer_exists
+    global mode
+
+    if timer_exists:
+        timer.deinit()
+        timer_exists = False
+        mode = 'Paused'
     
 
+def reset():
+    global min
+    global sec
+    global hsec
+    
+    min = 0
+    sec = 0
+    hsec = 0
 
-start.irq(handler=start_handler, trigger=Pin.IRQ_FALLING)
-pause.irq(handler=pause_handler, trigger=Pin.IRQ_FALLING)
-reset.irq(handler=reset_handler, trigger=Pin.IRQ_FALLING)
-stop.irq(handler=stop_handler, trigger=Pin.IRQ_FALLING)
+def stop():
+    global mode
+
+    pause()
+    reset()
+    mode = 'Stopped & Reset'
 
 
-timer.init(freq=100, mode=Timer.PERIODIC, callback=handler)
+start_pin.irq(handler=start_handler, trigger=Pin.IRQ_FALLING)
+pause_pin.irq(handler=pause_handler, trigger=Pin.IRQ_FALLING)
+reset_pin.irq(handler=reset_handler, trigger=Pin.IRQ_FALLING)
+stop_pin.irq(handler=stop_handler, trigger=Pin.IRQ_FALLING)
+
+switch = {
+    1: start,
+    2: pause,
+    3: reset,
+    4: stop
+}
 
 while True:
 
-
+    if (callable(switch.get(option))):
+        switch.get(option)()
+        option = 0
 
     if update:
         hsec += 1
@@ -60,5 +107,6 @@ while True:
 
         update = False
     
-    print('{}:{}:{}'.format(min, sec, hsec), end='\r')
+    print('{}: {}:{}:{}'.format(mode, min, sec, hsec), end='\r')
+    utime.sleep_ms(5)
         
