@@ -1,112 +1,85 @@
 #import hardware used in design
-from utime import time_ns
-import utime
-from machine import Timer, Pin, UART
+## i.e from machine import UART
 
-start_pin = Pin(2, mode=Pin.IN, pull=Pin.PULL_UP)
-pause_pin = Pin(3, mode=Pin.IN, pull=Pin.PULL_UP)
-reset_pin = Pin(4, mode=Pin.IN, pull=Pin.PULL_UP)
-stop_pin  = Pin(5, mode=Pin.IN, pull=Pin.PULL_UP)
+########## Declare and initialize global variables ##########
 
-timer = Timer()
-timer_exists = False
+##TODO Declare Pins with as inputs and pull them up
+### i.e pin = Pin(N, mode=Pin.IN, pull=Pin.PULL_UP)
 
-update = False
-option = 0
-mode = "Idle"
-min = 0
-sec = 0
-hsec = 0
 
+##TODO Declare timer and bool to keep track of existence
+
+#TODO Declare global variables used in interrupts
+
+##TODO Declare update flag and set to false
+
+##TODO Declare option 
+
+##TODO Declare mode, min, sec, hsec and initialize them
+
+################ Interrupt Service Routines #################
+
+##TODO Implement Timer ISR
 def handler(callback_ref):
-    global update
-    update = True
+    pass # REMOVE
 
+##TODO Implement Pin ISRs for each button
 def start_handler(callback_ref):
-    global option
-    option = 1
+    pass # REMOVE
 
 def pause_handler(callback_ref):
-    global option
-    option = 2
+    pass # REMOVE
 
 def reset_handler(callback_ref): 
-    global option
-    option = 3
+    pass # REMOVE
 
 def stop_handler(callback_ref):
-    global option
-    option = 4
+    pass # REMOVE
 
+###################### Option Functions #####################
+
+##TODO Implement start
 def start():
-    global timer
-    global timer_exists
-    global mode
+    pass # REMOVE
 
-    if not timer_exists:
-        timer.init(freq=100, mode=Timer.PERIODIC, callback=handler)
-        timer_exists = True
-        mode = 'Running'
-
+##TODO Implement pause
 def pause():
-    global timer
-    global timer_exists
-    global mode
-
-    if timer_exists:
-        timer.deinit()
-        timer_exists = False
-        mode = 'Paused'
+    pass # REMOVE
     
-
+##TODO Implement reset
 def reset():
-    global min
-    global sec
-    global hsec
-    
-    min = 0
-    sec = 0
-    hsec = 0
+    pass #REMOVE
 
+##TODO Implement stop
 def stop():
-    global mode
+    pass # REMOVE
 
-    pause()
-    reset()
-    mode = 'Stopped & Reset'
+############################ Main ###########################
 
+if __name__ == '__name__':
 
-start_pin.irq(handler=start_handler, trigger=Pin.IRQ_FALLING)
-pause_pin.irq(handler=pause_handler, trigger=Pin.IRQ_FALLING)
-reset_pin.irq(handler=reset_handler, trigger=Pin.IRQ_FALLING)
-stop_pin.irq(handler=stop_handler, trigger=Pin.IRQ_FALLING)
+    ##TODO set irq for each Pin
+    ### i.e pin.irq(handler=pin_handler, trigger=Pin.IRQ_FALLING)
 
-switch = {
-    1: start,
-    2: pause,
-    3: reset,
-    4: stop
-}
+    switch = {
+        1: start,
+        2: pause,
+        3: reset,
+        4: stop
+    }
 
-while True:
+    while True:
+        pass # REMOVE
+        #UNCOMMENT - use this to call option functions
+        # if (callable(switch.get(option))):
+        #     switch.get(option)()
+        #     option = 0
 
-    if (callable(switch.get(option))):
-        switch.get(option)()
-        option = 0
-
-    if update:
-        hsec += 1
-
-        if hsec == 100:
-            sec += 1
-            hsec = 0
-
-        if sec == 60:
-            min += 1
-            sec = 0
-
-        update = False
-    
-    print('{}: {}:{}:{}'.format(mode, min, sec, hsec), end='\r')
-    utime.sleep_ms(5)
+        ##TODO create logic to update min, sec, hsec, and mode
         
+        #UNCOMMENT - use this to print
+        #print('{}: {}:{}:{}'.format(mode, min, sec, hsec), end='\r')
+        
+        ##TODO sleep for 5 ms to prevent over utilization
+
+#############################################################
