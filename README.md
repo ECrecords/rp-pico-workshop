@@ -7,6 +7,6 @@
 ### [General Purpose Input/Output (GPIO)](workshop/gpio/)
 ### [Universal Asynchronous Receiver Transmitter (UART)](workshop/uart/)
 ### [Pulse Width Modulation (PWM)](workshop/pwm/)
-### [Analog to Digital Converter](workshop/adc/)
+### [Analog to Digital Converter (ADC)](workshop/adc/)
 
 ![Pico Pinout](img/pico_pintout.png)
