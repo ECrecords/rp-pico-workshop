@@ -22,14 +22,21 @@ pin0 = Pin(0, mode=Pin.IN, pull=Pin.PULL_DOWN)
 # Initializes the GP1 to be an input while being pulled up
 pin1 = Pin(1, mode=Pin.IN, pull=Pin.PULL_UP)
 
+# Initializes the GP25 (on-board led) while being pulled down
+led = Pin(25, mode=Pin.OUT, pull=Pin.PULL_DOWN)
+
 # Enables an interrupt on GP1 that is triggered on a falling edge
 ## uses a hardware interrupt
 pin1.irq(handler=pin1_irq_handler, trigger=Pin.IRQ_FALLING, hard=True)
 
+# Declares and initializes the count to 0
 count = 0
 
 #TODO add a new GPIO pin that can break this loop
 while True:
+
+    # blinks led on and off
+    led.toggle()
 
     # Checks if the interrupt was recently triggered
     if irq_trigged:
