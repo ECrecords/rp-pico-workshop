@@ -1,4 +1,4 @@
-# Adc DEMO
+# ADC DEMO
 
 ## [Python Code](adc_demo.py)
 
