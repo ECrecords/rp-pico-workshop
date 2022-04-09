@@ -44,12 +44,3 @@ while True:
 
     # CPU sleeps for 1 ms
     utime.sleep_ms(1)
-
-
-    
-    
-    
-
-    
-    
-
