@@ -8,5 +8,6 @@
 ### [Universal Asynchronous Receiver Transmitter (UART)](workshop/uart/)
 ### [Pulse Width Modulation (PWM)](workshop/pwm/)
 ### [Analog to Digital Converter (ADC)](workshop/adc/)
+### [Hardware Timers](workshop/timers/)
 
 ![Pico Pinout](img/pico_pintout.png)
