@@ -1,4 +1,4 @@
-# GPIO DEMO
+# Adc DEMO
 
 ## [Python Code](adc_demo.py)
 
