@@ -21,40 +21,66 @@ PARITY_TYPE = None
 # BAUD rate converted to bytes per second
 BYTES_PER_SEC = 1/(BAUD/8)
 
-# Declares a 32 byte buffer
-write_bytes = bytearray()
-read_bytes = ""
+if __name__ == '__main__':
 
-# Declares and initializes UART0 using GP0 (TX) and GP1(RX)
-tx_flag = Pin(2, mode=Pin.IN, pull=Pin.PULL_UP)
-rx_flag = Pin(3, mode=Pin.IN, pull=Pin.PULL_DOWN)
+    # Declares a 32 byte buffer
+    write_bytes = bytearray()
+    read_bytes = bytearray()
 
-uart0 = UART(id=0, baudrate=BAUD, stop=STOP_BITS, tx=Pin(0), rx=Pin(1))
+    # Declare and initialize RX trigger
+    is_rx = False
 
-while True:
+    # Declares and initializes UART0 using GP0 (TX) and GP1(RX)
+    uart0 = UART(id=0, baudrate=BAUD, stop=STOP_BITS, tx=Pin(0), rx=Pin(1))
 
-    if tx_flag:
-        # Ask for string via REPL
-        output_str = input("UART Message: ")
-        write_bytes = bytearray(len(output_str))
-        # Encodes string (ASCII)
-        write_bytes = output_str.encode()
+    #   Declare and initializes flags that enable RX and TX independently
+    tx_flag = Pin(2, mode=Pin.IN, pull=Pin.PULL_UP)
+    rx_flag = Pin(3, mode=Pin.IN, pull=Pin.PULL_DOWN)
 
-        # Writes message via GP0
-        uart0.write(write_bytes)
+    while True:
 
-        # Calculates amount of time CPU must wait for UART to fully send message
-        sleep_time = BYTES_PER_SEC * (START_BITS + len(write_bytes) + PARITY_BITS + STOP_BITS)
-        # CPU sleeps for msg to be fully sent
-        utime.sleep_ms(round(sleep_time * 1E3))
-    
+        # if GP2 is high
+        if tx_flag:
+            # Ask for string via REPL
+            output_str = input("UART Message: ")
+            write_bytes = bytearray(len(output_str))
 
-    if rx_flag:
-        if uart0.any() > 0:
-            # Dump n bytes into buffer
-            uart0.readline()
-            # Print the received bytes via REPL
-            print(read_bytes)
+            # Encodes string (ASCII)
+            write_bytes = bytearray(output_str.encode())
 
-    # CPU sleeps for 1 ms
-    utime.sleep_ms(1)
+            # Writes message via GP0
+            uart0.write(write_bytes)
+
+            # Calculates amount of time CPU must wait for UART to fully send message
+            sleep_time = BYTES_PER_SEC * (START_BITS + len(write_bytes) + PARITY_BITS + STOP_BITS)
+            # CPU sleeps for msg to be fully sent
+            utime.sleep_ms(round(sleep_time * 1E3))
+        
+        # if GP2 is low
+        if rx_flag:
+
+            print('Receiving: ', end='')
+
+            # Clear read buffer
+            read_bytes = bytearray()
+
+            # While UART has bytes waiting
+            while uart0.any() > 0:
+                is_rx = True
+
+                # Dump byte into buffer
+                tmp = (uart0.read(1)).decode() #type: ignore 
+
+                read_bytes.append(ord(tmp))
+                # Print the received bytes via REPL
+            
+            # If something was received
+            if is_rx:
+                # Clear rx trigger
+                is_rx = False
+
+                # Print received message
+                print(read_bytes.decode())
+
+        # CPU sleeps for 1 ms
+        utime.sleep_ms(1)
