@@ -155,5 +155,5 @@ Wire your breadboard with the RP-RP2 and push buttons to resemble the wiring dia
 
 ![gpio_wiring](../../img/gpio_demo.png)
 
-Following the link and upload the code to your RP-RP2: [gpio_demo.py](gpio_demo.py)
+Follow the link and upload the code to your RP-RP2: [gpio_demo.py](gpio_demo.py)
 
