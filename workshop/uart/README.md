@@ -18,7 +18,7 @@ When design a application that utilizes UART the following parameters must be co
 
 ## class `UART`
 
-The `UART` class implements the standard UART/USART duplex serial communications protocol. The protocol consists of 2 lines: RX and TX. The RP-RP2 has two UART interfaces (`UART0` & `UART1`). They can be accessed using the GPIO pins labeled with UART(0/1) TX and UART(0/1) RX. Currently only one UART can be used at a time.
+The `UART` class implements the standard UART/USART duplex serial communications protocol. The protocol consists of 2 lines: RX and TX. The RP-RP2 has two UART interfaces (`UART0` & `UART1`). They can be accessed using the GPIO pins labeled with UART(0/1) TX and UART(0/1) RX.
 
 <p align="center">
     <img src="../../img/Pico-R3-SDK11-Pinout.png" alt="pico_pinout" width="950">
