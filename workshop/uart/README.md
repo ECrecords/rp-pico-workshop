@@ -147,4 +147,4 @@ This section will show a on-board demonstration of using the `UART` class. This 
 Wire your breadboards with the RP-RP2 to resemble the wiring diagram bellow.
 ![uart_wiring](../../img/uart_demo_bb.png)
 
-Follow the link and upload the code to your RP-RP2: [uart_demo.py](uart_demo.py)
+### Follow the link and upload the code to your RP-RP2: [uart_demo.py](uart_demo.py)
