@@ -5,7 +5,7 @@
 A pin object is used to control ***general purpose input/output*** (GPIO) pins. `Pin` objects are associated with physical pins on the RP-RP2 as seen in the pin-out diagram.
 
 <p align="center">
-    <img src="../../img/Pico-R3-SDK11-Pinout.png" alt="pico_pinout" width="800">
+    <img src="../../img/Pico-R3-SDK11-Pinout.png" alt="pico_pinout" width="950">
     <br> <b> Raspberry Pi Pico Pinout </b>
 </p>
 
