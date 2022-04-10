@@ -4,11 +4,11 @@
 
 ## Table of Contents
 
-### [General Purpose Input/Output (GPIO)](workshop/gpio/)
-### [Universal Asynchronous Receiver Transmitter (UART)](workshop/uart/)
-### [Pulse Width Modulation (PWM)](workshop/pwm/)
-### [Analog to Digital Converter (ADC)](workshop/adc/)
-### [Hardware Timers](workshop/timers/)
+- ### [General Purpose Input/Output (GPIO)](workshop/gpio/)
+- ### [Universal Asynchronous Receiver Transmitter (UART)](workshop/uart/)
+- ### [Pulse Width Modulation (PWM)](workshop/pwm/)
+- ### [Analog to Digital Converter (ADC)](workshop/adc/)
+- ### [Hardware Timers](workshop/timers/)
 
 ## References
 ### [Raspberry Pi Pico Python SDK](https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf)
