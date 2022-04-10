@@ -120,11 +120,11 @@ def value(self, value: Any, /) -> None:
 
 Their are two ways of reading data from the GPIOs: polling and interrupts. It is up to the embedded programmer to decided which to use per application.
 
-## Polling
+#### Polling
 
 Polling is the act of periodicity checking the GPIO pin(s) to grab data. Polling is effective when the data is frequently and deterministic. It becomes ineffective when the data is aperiodic/infrequent as it leaves the CPU doing nothing when no data is present.
 
-## Interrupts
+#### Interrupts
 
 Interrupts allow the CPU to continues doing other task, when a *trigger* is detected in a specific pin, the CPU will stop it current task and *handler* the interrupt cause.
 
