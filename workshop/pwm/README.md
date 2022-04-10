@@ -17,7 +17,12 @@ By varying the portion of the time the signal is "on" a analog value can be achi
 
 ## class `PWM`
 
-There are 8 independent channels each of which have 2 outputs making it 16 PWM channels in total which can be clocked from 7Hz to 125Mhz. 
+There are 8 independent channels each of which have 2 outputs making it 16 PWM channels in total which can be clocked from 7Hz to 125Mhz. A PWM object can be initialized on any GPIO pin that support PWM as shown in the pinout bellow.
+
+<p align="center">
+    <img src="../../img/Pico-R3-SDK11-Pinout.png" alt="pico_pinout" width="950">
+    <br> <b> Raspberry Pi Pico Pinout </b>
+</p>
 
 ### Initializing A `PWM` Object
 
