@@ -5,7 +5,7 @@
 A pin object is used to control ***general purpose input/output*** (GPIO) pins. `Pin` objects are associated with physical pins on the RP-RP2 as seen in the pin-out diagram.
 
 <p align="center">
-    <img src="../../img/Pico-R3-SDK11-Pinout.png" alt="pico_pinout" width="600">
+    <img src="../../img/Pico-R3-SDK11-Pinout.png" alt="pico_pinout" width="800">
     <br> <b> Raspberry Pi Pico Pinout </b>
 </p>
 
@@ -53,8 +53,6 @@ They are accessed in the following way: `Pin.IRQ_FALLING`
 Bellow are the functions defined for the `Pin` class for the RP-RP2.
 
 ```python
-
-    def high(self):
     def high(self):
         """
         Sets the pin to high.
@@ -120,10 +118,44 @@ Bellow are the functions defined for the `Pin` class for the RP-RP2.
 
 ### `Pin` Objects & Interrupts
 
+Their are two ways of reading data from the GPIOs: polling and interrupts. It is up to the embedded programmer to decided which to use per application.
 
+## Polling
 
+Polling is the act of periodicity checking the GPIO pin(s) to grab data. Polling is effective when the data is frequently and deterministic. It becomes ineffective when the data is aperiodic/infrequent as it leaves the CPU doing nothing when no data is present.
 
-## [Python Code](gpio_demo.py)
+## Interrupts
 
-## Wiring Diagram
+Interrupts allow the CPU to continues doing other task, when a *trigger* is detected in a specific pin, the CPU will stop it current task and *handler* the interrupt cause.
+
+The `Pin` class allow the setting of interrupts (IRQ) for each GPIO pin using the ```irq(...)``` function defined above.
+
+The ``irq(...)`` functions requires three things:
+- `handler` : a function that is called whenever the interrupt occurs.
+- `trigger` : event that cause the interrupt, only two options `IRQ_FALLING` and `IRQ_RISING`.
+- `hard`    : if true enables a hardware interrupt which is quicker to call the ***interrupt service routine*** (ISR).
+
+Bellow is an example of an interrupt that occurs whenever a falling edge is detected on GP0:
+
+```python
+from machine import Pin
+...
+def pin_isr(callback: Pin):
+    ...
+
+pin = Pin(0, mode.Pin.IN, pull=Pin.PULL_UP)
+pin.irq(callback=pin_isr, trigger=Pin.IRQ_FALLING, hard=True)
+```
+
+## Demonstration
+
+This section will show a on-board demonstration of using the `Pin` class along with interrupts.
+
+Wire your breadboard with the RP-RP2 and push buttons to resemble the wiring diagram bellow.
+
 ![gpio_wiring](../../img/gpio_demo.png)
+
+Following the link and upload the code to your RP-RP2: [python_demo.py](gpio_demo.py)
+
+## [Return to Table Of Contents](../../)
+
