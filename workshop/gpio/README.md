@@ -53,66 +53,66 @@ They are accessed in the following way: `Pin.IRQ_FALLING`
 Bellow are the functions defined for the `Pin` class for the RP-RP2.
 
 ```python
-    def high(self):
-        """
-        Sets the pin to high.
-        """
+def high(self):
+    """
+    Sets the pin to high.
+    """
 
-    def init(self):
-        """
-        Initialises the pin.
-        """
+def init(self):
+    """
+    Initialises the pin.
+    """
 
-    def irq(self, handler: Callable, trigger: int, hard: bool = False) -> Callable:
-        """
-        Sets an interrupt for when the pin is rising or falling.
+def irq(self, handler: Callable, trigger: int, hard: bool = False) -> Callable:
+    """
+    Sets an interrupt for when the pin is rising or falling.
 
-            - ``handler`` the code to execute when the interrupt happens.
-            - ``trigger`` either ``IRQ_RISING`` or ``IRQ_FALLING``
-            - ``hard`` if true a hardware interrupt is used. This reduces the delay between the pin change and the handler being called.
-        """
+        - ``handler`` the code to execute when the interrupt happens.
+        - ``trigger`` either ``IRQ_RISING`` or ``IRQ_FALLING``
+        - ``hard`` if true a hardware interrupt is used. This reduces the delay between the pin change and the handler being called.
+    """
 
-    def low(self):
-        """
-        Sets the pin to low.
-        """
+def low(self):
+    """
+    Sets the pin to low.
+    """
 
-    def off(self):
-       """
-       Sets the pin to be off.
-       """
+def off(self):
+    """
+    Sets the pin to be off.
+    """
 
-    def on(self):
-       """
-       Sets the pin to be on.
-       """
+def on(self):
+    """
+    Sets the pin to be on.
+    """
 
-    def toggle(self):
-        """
-        Sets the pin to high if it's currently low, and vice versa.
-        """
+def toggle(self):
+    """
+    Sets the pin to high if it's currently low, and vice versa.
+    """
 
-    @overload
-    def value(self) -> int:
-        """
-        Get or set the digital logic level of the pin:
-    
-            - With no argument, return 0 or 1 depending on the logic level of the pin.
-            - With ``value`` given, set the logic level of the pin.  ``value`` can be
-            anything that converts to a boolean.  If it converts to ``True``, the pin
-            is set high, otherwise it is set low.
-        """
+@overload
+def value(self) -> int:
+    """
+    Get or set the digital logic level of the pin:
 
-    @overload
-    def value(self, value: Any, /) -> None:
-        """
-        Get or set the digital logic level of the pin:
-    
-            - With no argument, return 0 or 1 depending on the logic level of the pin.
-            - With ``value`` given, set the logic level of the pin.  ``value`` can be
-            anything that converts to a boolean.  If it converts to ``True``, the pin
-            is set high, otherwise it is set low.
-        """
+        - With no argument, return 0 or 1 depending on the logic level of the pin.
+        - With ``value`` given, set the logic level of the pin.  ``value`` can be
+        anything that converts to a boolean.  If it converts to ``True``, the pin
+        is set high, otherwise it is set low.
+    """
+
+@overload
+def value(self, value: Any, /) -> None:
+    """
+    Get or set the digital logic level of the pin:
+
+        - With no argument, return 0 or 1 depending on the logic level of the pin.
+        - With ``value`` given, set the logic level of the pin.  ``value`` can be
+        anything that converts to a boolean.  If it converts to ``True``, the pin
+        is set high, otherwise it is set low.
+    """
 
 ```
 
