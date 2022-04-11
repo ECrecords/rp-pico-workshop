@@ -14,3 +14,4 @@
 ### [Raspberry Pi Pico Python SDK](https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf)
 ### [RP2 Quick Reference](https://docs.micropython.org/en/latest/rp2/quickref.html)
 ### [RP2 Library](https://docs.micropython.org/en/latest/library/rp2.html)
+### [RP2040 Datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf)
