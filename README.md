@@ -6,9 +6,10 @@
 
 - ### [General Purpose Input/Output (GPIO)](workshop/gpio/)
 - ### [Universal Asynchronous Receiver Transmitter (UART)](workshop/uart/)
+- ### [Hardware Timers](workshop/timers/)
+- ### [Watchdog Timer (WDT)](workshop/wdt/)
 - ### [Pulse Width Modulation (PWM)](workshop/pwm/)
 - ### [Analog to Digital Converter (ADC)](workshop/adc/)
-- ### [Hardware Timers](workshop/timers/)
 - ### [Inter-Integrated Circuit (I<sup>2</sup>C)](workshop/timers/)
 
 ## References
