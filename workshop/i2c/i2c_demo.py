@@ -77,7 +77,7 @@ class AHT10:
         # convert to fahrenheit
         return cel_temp * (9/5) + 32
 
-    #TODO Read raw_data from the sensor using bit manipulation
+    #TODO Read raw_data from the sensor and isolate the humidity data using bit manipulation
     # then use the relative humidity transforamtion from the AHT10 documentation
     # to get the data into a "human" format
     @property
