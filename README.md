@@ -9,6 +9,7 @@
 - ### [Pulse Width Modulation (PWM)](workshop/pwm/)
 - ### [Analog to Digital Converter (ADC)](workshop/adc/)
 - ### [Hardware Timers](workshop/timers/)
+- ### [Inter-Integrated Circuit (I<sup>2</sup>C)](workshop/timers/)
 
 ## References
 ### [Raspberry Pi Pico Python SDK](https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf)
