@@ -10,7 +10,7 @@
 - ### [Watchdog Timer (WDT)](workshop/wdt/)
 - ### [Pulse Width Modulation (PWM)](workshop/pwm/)
 - ### [Analog to Digital Converter (ADC)](workshop/adc/)
-- ### [Inter-Integrated Circuit (I<sup>2</sup>C)](workshop/timers/)
+- ### [Inter-Integrated Circuit (I<sup>2</sup>C)](workshop/i2c/)
 
 ## References
 ### [Raspberry Pi Pico Python SDK](https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf)
