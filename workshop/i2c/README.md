@@ -57,31 +57,11 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
    def start(self) -> None:
       """
       Generate a START condition on the bus (SDA transitions to low while SCL is high).
-   
-   
-      Primitive I2C operations
-      ------------------------
-      
-      The following methods implement the primitive I2C master bus operations and can
-      be combined to make any I2C transaction.  They are provided if you need more
-      control over the bus, otherwise the standard methods (see below) can be used.
-      
-      These methods are only available on the `machine.SoftI2C` class.
       """
 
    def stop(self) -> None:
       """
       Generate a STOP condition on the bus (SDA transitions to high while SCL is high).
-   
-   
-      Primitive I2C operations
-      ------------------------
-      
-      The following methods implement the primitive I2C master bus operations and can
-      be combined to make any I2C transaction.  They are provided if you need more
-      control over the bus, otherwise the standard methods (see below) can be used.
-      
-      These methods are only available on the `machine.SoftI2C` class.
       """
 
    def readinto(self, buf: bytes, nack: bool = True, /) -> None:
@@ -91,16 +71,6 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
       receiving all but the last byte.  After the last byte is received, if *nack*
       is true then a NACK will be sent, otherwise an ACK will be sent (and in this
       case the slave assumes more bytes are going to be read in a later call).
-   
-   
-      Primitive I2C operations
-      ------------------------
-      
-      The following methods implement the primitive I2C master bus operations and can
-      be combined to make any I2C transaction.  They are provided if you need more
-      control over the bus, otherwise the standard methods (see below) can be used.
-      
-      These methods are only available on the `machine.SoftI2C` class.
       """
 
    def write(self, buf: bytes, /) -> int:
@@ -108,16 +78,6 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
       Write the bytes from *buf* to the bus.  Checks that an ACK is received
       after each byte and stops transmitting the remaining bytes if a NACK is
       received.  The function returns the number of ACKs that were received.
-   
-   
-      Primitive I2C operations
-      ------------------------
-      
-      The following methods implement the primitive I2C master bus operations and can
-      be combined to make any I2C transaction.  They are provided if you need more
-      control over the bus, otherwise the standard methods (see below) can be used.
-      
-      These methods are only available on the `machine.SoftI2C` class.
       """
 
    def readfrom(self, addr: int, nbytes: int, stop: bool = True, /) -> bytes:
@@ -125,13 +85,6 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
       Read *nbytes* from the slave specified by *addr*.
       If *stop* is true then a STOP condition is generated at the end of the transfer.
       Returns a `bytes` object with the data read.
-   
-   
-      Standard bus operations
-      -----------------------
-      
-      The following methods implement the standard I2C master read and write
-      operations that target a given slave device.
       """
 
    def readfrom_into(self, addr: int, buf: bytes, stop: bool = True, /) -> None:
@@ -141,13 +94,6 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
       If *stop* is true then a STOP condition is generated at the end of the transfer.
    
       The method returns ``None``.
-   
-   
-      Standard bus operations
-      -----------------------
-      
-      The following methods implement the standard I2C master read and write
-      operations that target a given slave device.
       """
 
    def writeto(self, addr: int, buf: bytes, stop: bool = True, /) -> int:
@@ -157,13 +103,6 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
       remaining bytes are not sent.  If *stop* is true then a STOP condition is
       generated at the end of the transfer, even if a NACK is received.
       The function returns the number of ACKs that were received.
-   
-   
-      Standard bus operations
-      -----------------------
-      
-      The following methods implement the standard I2C master read and write
-      operations that target a given slave device.
       """
 
    
@@ -180,13 +119,6 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
       are not sent.  If *stop* is true then a STOP condition is generated at
       the end of the transfer, even if a NACK is received.  The function
       returns the number of ACKs that were received.
-   
-   
-      Standard bus operations
-      -----------------------
-      
-      The following methods implement the standard I2C master read and write
-      operations that target a given slave device.
       """
 
    def readfrom_mem(self, addr: int, memaddr: int, nbytes: int, /, *, addrsize: int = 8) -> bytes:
@@ -195,15 +127,6 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
       address specified by *memaddr*.
       The argument *addrsize* specifies the address size in bits.
       Returns a `bytes` object with the data read.
-   
-   
-      Memory operations
-      -----------------
-      
-      Some I2C devices act as a memory device (or set of registers) that can be read
-      from and written to.  In this case there are two addresses associated with an
-      I2C transaction: the slave address and the memory address.  The following
-      methods are convenience functions to communicate with such devices.
       """
 
    
@@ -216,15 +139,6 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
       this argument is not recognised and the address size is always 8 bits).
    
       The method returns ``None``.
-   
-   
-      Memory operations
-      -----------------
-      
-      Some I2C devices act as a memory device (or set of registers) that can be read
-      from and written to.  In this case there are two addresses associated with an
-      I2C transaction: the slave address and the memory address.  The following
-      methods are convenience functions to communicate with such devices.
       """
 
    def writeto_mem(self, addr: int, memaddr: int, buf: bytes, /, *, addrsize: int = 8) -> None:
@@ -235,14 +149,6 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
       this argument is not recognised and the address size is always 8 bits).
    
       The method returns ``None``.
-   
-      Memory operations
-      -----------------
-      
-      Some I2C devices act as a memory device (or set of registers) that can be read
-      from and written to.  In this case there are two addresses associated with an
-      I2C transaction: the slave address and the memory address.  The following
-      methods are convenience functions to communicate with such devices.
       """
 ```
 ## Demonstration
