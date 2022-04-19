@@ -27,6 +27,9 @@ Alongside the SCL and SDA, there are two operating modes.
 </p>
 
 ## class `I2C`
+
+Initialization of a `I2C` object is done when declaring it. The default constructor's signature can be seen below.
+
 ```python
    @overload
    def init(self, *, scl: Pin, sda: Pin, freq: int = 400_000) -> None:
@@ -39,7 +42,7 @@ Alongside the SCL and SDA, there are two operating modes.
       """
 ```
 
-The pinout bellow shows the GPIO pins that are attached to teh I2C controller on the Raspberry Pi Pico.
+The pinout bellow shows the GPIO pins that are attached to the I2C controller on the Raspberry Pi Pico.
 
 <p align="center">
 <img src="../../img/Pico-R3-SDK11-Pinout.png" width="900">
@@ -105,7 +108,6 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
       The function returns the number of ACKs that were received.
       """
 
-   
    def writevto(self, addr: int, vector: Sequence[bytes], stop: bool = True, /) -> int:
       """
       Write the bytes contained in *vector* to the slave specified by *addr*.
@@ -129,7 +131,6 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
       Returns a `bytes` object with the data read.
       """
 
-   
    def readfrom_mem_into(self, addr: int, memaddr: int, buf: bytes, /, *, addrsize: int = 8) -> None:
       """
       Read into *buf* from the slave specified by *addr* starting from the
@@ -153,23 +154,30 @@ The pinout bellow shows the GPIO pins that are attached to teh I2C controller on
 ```
 ## Demonstration
 
-### AHT10 Overview
-The AHT10 is equipped with an ASIC chip that communications with temperature and humidity seniors. It uses the I2C protocol to calibrate the digital output signals. This is what we will be using to communicate with the Raspberry Pi Pico to allow for the reading of the temperature and humidity of the atmosphere.
+This section will show a on-board demonstration of using the `I2C` class to communicate
+with an external temperature and humidity sensor (AHT10).
 
-The following images, Figure A and Figure B, shows the distribution of pins and a typical circuit with the AHT10 with master. We will be making a circuit similar to the one in Figure B to allow to read the temperature and humidity of the atmosphere.
+### AHT10 Overview
+The AHT10 is equipped with an ASIC chip that communications with temperature and humidity seniors. It uses the I2C protocol to calibrate the digital output signals. 
+
+A breakout board equipped with teh AHT10 sensor will be used to communicate with the Raspberry Pi Pico to allow for the reading of the temperature and humidity of the atmosphere, it is shown bellow.
 
 <p align="center">
-<img src="../../img/i2c_aht10_diagram.png" width="400">
-<br>
-<i>Figure A</i>
+    <img src="../../img/AHT10_sensor.png" width="750">
+    <br> <b> AHT10 Breakout Board </b>
 </p>
+  
+We will be making a circuit similar to the diagram bellow to read the temperature and humidity of the atmosphere.
 
 <p align="center">
 <img src="../../img/i2c_aht10_master_to_chip.png" width="400">
-<br>
-<i>Figure B</i>
+<br> <b>Generic Wiring Diagram</b>
 </p>
+
+The [datasheet](AHT10_Datasheet.pdf) for the AHT10 will be used for this demo since it has instruction on how to communicate with the AHT10.
+
+Wire your breadboard with the RP-RP2 and push buttons to resemble the wiring diagram bellow.
 
 ![i2c_wiring](../../img/i2c_demo_bb.png)
 
-### Follow the lin and upload the code to your RP-RP2: [i2c_demo.py](../i2c/i2c_demo.py)
+### Follow the link and upload the code to your RP-RP2: [i2c_demo.py](../i2c/i2c_demo.py)
