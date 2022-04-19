@@ -34,15 +34,14 @@ The way I2C devices communicate is demonstrated below.
 Initialization of a `I2C` object is done when declaring it. The default constructor's signature can be seen below.
 
 ```python
-   @overload
-   def init(self, *, scl: Pin, sda: Pin, freq: int = 400_000) -> None:
-      """
-     Initialise the I2C bus with the given arguments:
-   
-        - *scl* is a pin object for the SCL line
-        - *sda* is a pin object for the SDA line
-        - *freq* is the SCL clock rate
-      """
+def init(self, *, scl: Pin, sda: Pin, freq: int = 400_000) -> None:
+    """
+    Initialise the I2C bus with the given arguments:
+
+    - *scl* is a pin object for the SCL line
+    - *sda* is a pin object for the SDA line
+    - *freq* is the SCL clock rate
+    """
 ```
 
 The pinout below shows the GPIO pins that are attached to the I2C controller on the Raspberry Pi Pico.
