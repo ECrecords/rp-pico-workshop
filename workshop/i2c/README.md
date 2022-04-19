@@ -182,13 +182,7 @@ The following table shows the defauly I2C pins for the Raspberry Pi Pico.
       """
 
    
-   def writevto(
-      self, 
-      addr: int, 
-      vector: Sequence[bytes], 
-      stop: bool = True, 
-      /
-   ) -> int:
+   def writevto(self, addr: int, vector: Sequence[bytes], stop: bool = True, /) -> int:
       """
       Write the bytes contained in *vector* to the slave specified by *addr*.
       *vector* should be a tuple or list of objects with the buffer protocol.
