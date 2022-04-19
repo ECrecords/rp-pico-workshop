@@ -42,103 +42,97 @@ The following images, Figure A and Figure B, shows the distribution of pins and 
 
 ## class `I2C`
 ```python
-def __init__(self, i2c: I2C, address: int = DEFAULT_ADDRESS) -> None:
-    """
-    This is the main function for allows access to the ATH10 chip. This will initalize
-    the ATH10 object with taking an input of the I2C configuration.
-    """
-```
-### `I2C` Imports
-```python
-from utime import sleep_ms
-from machine import I2C, Pin
-"""
-    The utime module provides functions for getting the current time and date 
-    measuring time intervals, and for delays. sleep_ms(x) is a method from
-    utime that creates a delay for a given number of miliseconds, denoted
-    by x.
-    
-    The machine module contains specific functions related to the hardware on a      
-    particular board. I2C allows for the setup of the I2C protocol. Pin gives access 
-    to the GPIO pin that is associaed with a given id.
-"""
+from machine import I2C
+i2c = I2C(freq=400000)
+i2c.scan()                     
+i2c.writeto(42, b'123')         
+i2c.readfrom(42, 4)             
+i2c.readfrom_mem(42, 8, 3)
+i2c.writeto_mem(42, 2, b'\x10') 
 ```
 
-### `I2C` Constants
-```python
-    DEFAULT_ADDRESS = 0x38
-    INITIALIZATION = bytearray([0xE1, 0x08, 0x00])
-    TRIGGER_MEASUREMENT = bytearray([0xAC, 0x33, 0x00])
-    SOFT_RESET = bytearray([0xBA])
-
-    NUM_DATA_BYTES = 6
-    MEASUREMENT_WAIT = 75
-    SOFT_RESET_WAIT = 20
-```
-
+The following table shows the defauly I2C pins for the Raspberry Pi Pico.
+<p align="center">
+<img src="../../img/i2c_default_pins_figure.png" width="600">
+<br>
+<i>Table A</i>
+</p>
 
 ### `I2C` Class Functions
 ```python
-    def __trigger_measurements(self):
-        self.i2c.writeto(self.address, self.TRIGGER_MEASUREMENT)
-        sleep_ms(self.MEASUREMENT_WAIT)
+I2C.init(scl, sda, *, freq=400000)
+"""
+Initialise the I2C bus with the given arguments:
+    - scl is a pin object for the SCL line
+    - sda is a pin object for the SDA line
+    - freq is the SCL clock rate
+"""
+def I2C.deinit()
+"""
+Turn off the I2C bus.
+"""
+def I2C.scan()
+"""
+Scan all I2C addresses between 0x08 and 0x77 inclusive and return a list of those that respond. A device responds if it pulls the SDA line low after its address (including a write bit) is sent on the bus.
+"""
+def I2C.start()
+"""
+Generate a START condition on the bus (SDA transitions to low while SCL is high).
+"""
+def I2C.stop()
+"""
+Generate a STOP condition on the bus (SDA transitions to high while SCL is high).
+"""
 
-    """
-    trigger_measurements:
-    - Write TRIGGER_MEASUREMENT byte array to I2C bus
-    - Sleep for 75 ms as the sensor conducts measurements
-    """
-    def __raw_measure(self):
-        return self.i2c.readfrom(self.address, self.NUM_DATA_BYTES)
-    """
-    raw_measure:
-    - Used to read raw byte data from sensor
-    - Read 6 bytes form I2C device
-    """
-    def soft_reset(self):
-        self.i2c.writeto(self.address, self.SOFT_RESET)
-        sleep_ms(self.SOFT_RESET_WAIT)
-    """
-    soft_reset:
-    - Used to reset the sensor
-    - Write SOFT_RESET byte array to I2C bus
-    - Sleep for 20 ms as sensor resets
-    """
-    @property
-    def temperature_cel(self):
-        self.__trigger_measurements()
-        raw_data = self.__raw_measure()
-        temp_data =  ((raw_data[3] & 0x0F) << 16) | (raw_data[4] << 8 ) |  (raw_data[5])
-        return (temp_data/(2**20))*200-50
-    
-    """
-    temperature_cel:
-    - Used to get a current measurement of the temperature in celsius
-    - Trigger sensor measurement
-    - Get a raw measurement
-    - Isolate temperature data using bit manipulation
-    - Convert data to celsious using temperature transform form AHT10 documentation
-    """
-    
-    @property
-    def temperature_far(self):
-        cel_temp = self.temperature_celt
-        return cel_temp * (9/5) + 32
-    """
-    temperature_far:
-    - Used to get a current measurement of the temperature in fahrenheit
-    - Get a current temperature in celsius
-    - Convert to fahrenheit
-    """
-    @property
-    def rel_humidity(self):
-        pass
-    """
-    rel_humidity:
-    - Read raw_data from the sensor and isolate the humidity data using bit         
-    manipulation then use the relative humidity transforamtion from the AHT10 
-    documentation to get the data into a "human" format.
-    """
+def I2C.readinto(buf, nack=True, /)
+"""
+Reads bytes from the bus and stores them into buf. The number of bytes read is the length of buf. An ACK will be sent on the bus after receiving all but the last byte. After the last byte is received, if nack is true then a NACK will be sent, otherwise an ACK will be sent (and in this case the peripheral assumes more bytes are going to be read in a later call).
+"""
+def I2C.write(buf)
+"""
+Write the bytes from buf to the bus. Checks that an ACK is received after each byte and stops transmitting the remaining bytes if a NACK is received. The function returns the number of ACKs that were received.
+"""
+def I2C.readfrom(addr, nbytes, stop=True, /)
+"""
+Read nbytes from the peripheral specified by addr. If stop is true then a STOP condition is generated at the end of the transfer. Returns a bytes object with the data read.
+"""
+
+def I2C.readfrom_into(addr, buf, stop=True, /)
+"""
+Read into buf from the peripheral specified by addr. The number of bytes read will be the length of buf. If stop is true then a STOP condition is generated at the end of the transfer.
+
+The method returns None.
+"""
+def I2C.writeto(addr, buf, stop=True, /)
+"""
+Write the bytes from buf to the peripheral specified by addr. If a NACK is received following the write of a byte from buf then the remaining bytes are not sent. If stop is true then a STOP condition is generated at the end of the transfer, even if a NACK is received. The function returns the number of ACKs that were received.
+"""
+
+def I2C.writevto(addr, vector, stop=True, /)
+"""
+Write the bytes contained in vector to the peripheral specified by addr. vector should be a tuple or list of objects with the buffer protocol. The addr is sent once and then the bytes from each object in vector are written out sequentially. The objects in vector may be zero bytes in length in which case they don’t contribute to the output.
+
+If a NACK is received following the write of a byte from one of the objects in vector then the remaining bytes, and any remaining objects, are not sent. If stop is true then a STOP condition is generated at the end of the transfer, even if a NACK is received. The function returns the number of ACKs that were received.
+"""
+
+def I2C.readfrom_mem(addr, memaddr, nbytes, *, addrsize=8)
+"""
+Read nbytes from the peripheral specified by addr starting from the memory address specified by memaddr. The argument addrsize specifies the address size in bits. Returns a bytes object with the data read.
+"""
+
+def I2C.readfrom_mem_into(addr, memaddr, buf, *, addrsize=8)
+"""
+Read into buf from the peripheral specified by addr starting from the memory address specified by memaddr. The number of bytes read is the length of buf. The argument addrsize specifies the address size in bits (on ESP8266 this argument is not recognised and the address size is always 8 bits).
+
+The method returns None.
+"""
+
+def I2C.writeto_mem(addr, memaddr, buf, *, addrsize=8)
+"""
+Write buf to the peripheral specified by addr starting from the memory address specified by memaddr. The argument addrsize specifies the address size in bits (on ESP8266 this argument is not recognised and the address size is always 8 bits).
+
+The method returns None.
+"""
 ```
 ## Demonstration
 
