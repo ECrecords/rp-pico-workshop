@@ -22,8 +22,11 @@ Alongside the SCL and SDA, there are two operating modes.
 <img src="../../img/i2c_master_slave.png" width="425">
 </p>
 
+The way I2C devices communicate is demonstrated below.
+
 <p align="center">
-<img src="../../img/i2c_signals.jpg" width="900">
+    <img src="../../img/i2c_signals.jpg" width="900">
+    <br> <b> I2C Handshake</b>
 </p>
 
 ## class `I2C`
@@ -42,13 +45,16 @@ Initialization of a `I2C` object is done when declaring it. The default construc
       """
 ```
 
-The pinout bellow shows the GPIO pins that are attached to the I2C controller on the Raspberry Pi Pico.
+The pinout below shows the GPIO pins that are attached to the I2C controller on the Raspberry Pi Pico.
 
 <p align="center">
 <img src="../../img/Pico-R3-SDK11-Pinout.png" width="900">
 </p>
 
 ### `I2C` Class Functions
+
+The `I2C` functions implements are list below.
+
 ```python
    def scan(self) -> List[int]:
       """
@@ -158,25 +164,25 @@ This section will show a on-board demonstration of using the `I2C` class to comm
 with an external temperature and humidity sensor (AHT10).
 
 ### AHT10 Overview
-The AHT10 is equipped with an ASIC chip that communications with temperature and humidity seniors. It uses the I2C protocol to calibrate the digital output signals. 
+The AHT10 is equipped with an ASIC chip that communications with temperature and humidity sensors. It uses the I2C protocol to calibrate and read the digital output signals. 
 
-A breakout board equipped with teh AHT10 sensor will be used to communicate with the Raspberry Pi Pico to allow for the reading of the temperature and humidity of the atmosphere, it is shown bellow.
+A breakout board equipped with the AHT10 sensor will be used to communicate with the Raspberry Pi Pico to read the temperature and humidity of the atmosphere. The breakout board is shown below.
 
 <p align="center">
     <img src="../../img/AHT10_sensor.png" width="750">
     <br> <b> AHT10 Breakout Board </b>
 </p>
   
-We will be making a circuit similar to the diagram bellow to read the temperature and humidity of the atmosphere.
+We will be making a circuit similar to the diagram below to read the temperature and humidity of the atmosphere.
 
 <p align="center">
 <img src="../../img/i2c_aht10_master_to_chip.png" width="400">
 <br> <b>Generic Wiring Diagram</b>
 </p>
 
-The [datasheet](AHT10_Datasheet.pdf) for the AHT10 will be used for this demo since it has instruction on how to communicate with the AHT10.
+The [datasheet](AHT10_Datasheet.pdf) for the AHT10 will be used for this demo since it has instructions on how to communicate with the AHT10.
 
-Wire your breadboard with the RP-RP2 and push buttons to resemble the wiring diagram bellow.
+Wire your breadboard with the RP-RP2 and push buttons to resemble the wiring diagram below.
 
 ![i2c_wiring](../../img/i2c_demo_bb.png)
 
