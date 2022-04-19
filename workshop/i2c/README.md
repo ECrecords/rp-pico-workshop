@@ -258,6 +258,7 @@ The following table shows the defauly I2C pins for the Raspberry Pi Pico.
       from and written to.  In this case there are two addresses associated with an
       I2C transaction: the slave address and the memory address.  The following
       methods are convenience functions to communicate with such devices.
+      '''
 ```
 ## Demonstration
 
