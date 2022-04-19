@@ -1,8 +1,8 @@
 # Inter-Integrated Circuit (I<sup>2</sup>C)
 
-Inter-Integrated Circuit (I<sup>2</sup>C), also known as I2C, is a bus interface connection protocol that is incorporated into devices for serial communication. This protocol is used to connect microcontrollers, EEPROMS, converters and I/O interfaces in embedded systems. It allows for short-distance communciation among devices.
+Inter-Integrated Circuit (I<sup>2</sup>C), also known as I2C, is a bus interface connection protocol that is incorporated into devices for serial communication. This protocol is used to connect microcontrollers, EEPROMS, converters and I/O interfaces in embedded systems. It allows for short-distance communication among devices.
 
-The I2C has two bi-direction lines for data communcation called <b>SDA</b> and <b>SCL</b>.
+The I2C has two bi-direction lines for data communication called <b>SDA</b> and <b>SCL</b>.
 
 <b>SDA</b>
 <br>
@@ -15,30 +15,16 @@ The Serial Data, SDA, is where the transfer of data occurs.
 Alongside the SCL and SDA, there are two operating modes.
 <ul>
     <li> <b>Master</b> - SCL resides here.
-    <li> <b>Slave</b> - Has bidirectional SDA communcation with Master
+    <li> <b>Slave</b> - Has bidirectional SDA communication with Master
 </ul>
 
 <p align="center">
 <img src="../../img/i2c_master_slave.png" width="425">
 </p>
 
-## AHT10 Overview
-The AHT10 is equipped with an ASIC chip that communcations with temperature and hunidity seniors. It uses the I2C protocol to calibrate the digial output signals. This is what we will be using to communicate with the Raspberry Pi Pico to allow for the reading of the temperature and humidity of the atmosphere.
-
-The following images, Figure A and Figure B, shows the distribution of pins and a typical circuit with the AHT10 with master. We will be making a circuit similar to the one in Figure B to allow to read the temperature and humidity of the atmosphere.
-
 <p align="center">
-<img src="../../img/i2c_aht10_diagram.png" width="400">
-<br>
-<i>Figure A</i>
+<img src="../../img/i2c_signals.jpg" width="900">
 </p>
-
-<p align="center">
-<img src="../../img/i2c_aht10_master_to_chip.png" width="400">
-<br>
-<i>Figure B</i>
-</p>
-
 
 ## class `I2C`
 ```python
@@ -53,11 +39,10 @@ The following images, Figure A and Figure B, shows the distribution of pins and 
       """
 ```
 
-The following table shows the defauly I2C pins for the Raspberry Pi Pico.
+The pinout bellow shows the GPIO pins that are attached to teh I2C controller on the Raspberry Pi Pico.
+
 <p align="center">
-<img src="../../img/i2c_default_pins_figure.png" width="600">
-<br>
-<i>Table A</i>
+<img src="../../img/Pico-R3-SDK11-Pinout.png" width="900">
 </p>
 
 ### `I2C` Class Functions
@@ -261,6 +246,23 @@ The following table shows the defauly I2C pins for the Raspberry Pi Pico.
       """
 ```
 ## Demonstration
+
+### AHT10 Overview
+The AHT10 is equipped with an ASIC chip that communications with temperature and humidity seniors. It uses the I2C protocol to calibrate the digital output signals. This is what we will be using to communicate with the Raspberry Pi Pico to allow for the reading of the temperature and humidity of the atmosphere.
+
+The following images, Figure A and Figure B, shows the distribution of pins and a typical circuit with the AHT10 with master. We will be making a circuit similar to the one in Figure B to allow to read the temperature and humidity of the atmosphere.
+
+<p align="center">
+<img src="../../img/i2c_aht10_diagram.png" width="400">
+<br>
+<i>Figure A</i>
+</p>
+
+<p align="center">
+<img src="../../img/i2c_aht10_master_to_chip.png" width="400">
+<br>
+<i>Figure B</i>
+</p>
 
 ![i2c_wiring](../../img/i2c_demo_bb.png)
 
