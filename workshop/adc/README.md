@@ -29,6 +29,24 @@ def __init__(self, pin: Union[int, Pin], /):
 ###  `ADC` Class Functions
 
 ```python
+def ADC.init(*, sample_ns, atten)
+"""
+Apply the given settings to the ADC. Only those arguments that are specified will be changed. See the ADC constructor above for what the arguments are.
+"""
+def ADC.block()
+"""
+Return the ADCBlock instance associated with this ADC object.
+
+This method only exists if the port supports the ADCBlock class.
+"""
+def ADC.read_u16()
+"""
+Take an analog reading and return an integer in the range 0-65535. The return value represents the raw reading taken by the ADC, scaled such that the minimum value is 0 and the maximum value is 65535.
+"""
+def ADC.read_uv()
+"""
+Take an analog reading and return an integer value with units of microvolts. It is up to the particular port whether or not this value is calibrated, and how calibration is done.
+"""
 ```
 
 ## Demonstration
