@@ -30,7 +30,7 @@ pin = Pin(0, mode.Pin.IN, pull=Pin.PULL_DOWN)
 ```
 
 ### `Pin` Class Attributes
-Bellow are the class attributes of the `Pin` object available on the RP-RP2.
+Below are the class attributes of the `Pin` object available on the RP-RP2.
 
 ```python
 class Pin:
@@ -50,7 +50,7 @@ They are accessed in the following way: `Pin.IRQ_FALLING`
 
 ### `Pin` Class Functions
 
-Bellow are the functions defined for the `Pin` class for the RP-RP2.
+Below are the functions defined for the `Pin` class for the RP-RP2.
 
 ```python
 def high(self):
@@ -135,7 +135,7 @@ The ``irq(...)`` functions requires three things:
 - `trigger` : event that cause the interrupt, only two options `IRQ_FALLING` and `IRQ_RISING`.
 - `hard`    : if true enables a hardware interrupt which is quicker to call the ***interrupt service routine*** (ISR).
 
-Bellow is an example of an interrupt that occurs whenever a falling edge is detected on GP0:
+Below is an example of an interrupt that occurs whenever a falling edge is detected on GP0:
 
 ```python
 from machine import Pin
@@ -151,7 +151,7 @@ pin.irq(callback=pin_isr, trigger=Pin.IRQ_FALLING, hard=True)
 
 This section will show a on-board demonstration of using the `Pin` class along with interrupts.
 
-Wire your breadboard with the RP-RP2 and push buttons to resemble the wiring diagram bellow.
+Wire your breadboard with the RP-RP2 and push buttons to resemble the wiring diagram below.
 
 ![gpio_wiring](../../img/gpio_demo.png)
 
