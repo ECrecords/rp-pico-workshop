@@ -15,6 +15,8 @@ An ADC will first sample & hold a current analog reading then it will quantize t
 
 ## class `ADC`
 
+Initialization of a `ADC` object is done when declaring it. The default constructor's signature can be seen below.
+
 ```python
 def __init__(self, pin: Union[int, Pin], /):
     """
@@ -25,28 +27,37 @@ def __init__(self, pin: Union[int, Pin], /):
     """
 ```
 
-
 ###  `ADC` Class Functions
 
-```python
-def ADC.init(*, sample_ns, atten)
-"""
-Apply the given settings to the ADC. Only those arguments that are specified will be changed. See the ADC constructor above for what the arguments are.
-"""
-def ADC.block()
-"""
-Return the ADCBlock instance associated with this ADC object.
+Below are the functions defined for the `ADC` class.
+ Note that only one function is implemented for the RP-RP2.
 
-This method only exists if the port supports the ADCBlock class.
-"""
-def ADC.read_u16()
-"""
-Take an analog reading and return an integer in the range 0-65535. The return value represents the raw reading taken by the ADC, scaled such that the minimum value is 0 and the maximum value is 65535.
-"""
-def ADC.read_uv()
-"""
-Take an analog reading and return an integer value with units of microvolts. It is up to the particular port whether or not this value is calibrated, and how calibration is done.
-"""
+```python
+# Not supported on RP-RP2
+def init(*, sample_ns, atten) -> None:
+    """
+    Apply the given settings to the ADC. Only those arguments that are specified will be changed. See the ADC constructor above for what the arguments are.
+    """
+
+# Not supported on RP-RP2
+def block(self) -> ADCBlock:
+    """
+    Return the ADCBlock instance associated with this ADC object.
+    This method only exists if the port supports the ADCBlock class.
+    """
+
+def read_u16(self) -> int:
+    """
+    Take an analog reading and return an integer in the range 0-65535.
+    The return value represents the raw reading taken by the ADC, scaled
+    such that the minimum value is 0 and the maximum value is 65535.
+    """
+
+# Not supported on RP-RP2
+def read_uv(self) -> int:
+    """
+    Take an analog reading and return an integer value with units of microvolts. It is up to the particular port whether or not this value is calibrated, and how calibration is done.
+    """
 ```
 
 ## Demonstration
