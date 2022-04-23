@@ -1,3 +1,10 @@
+# Author: Elvis Chino-Islas
+# Date: 4/22/2020
+# Purpose: RP-RP2 Workshop
+# Description:
+#   Demonstrate how to use the I2C on the
+#   RP-RP2 by controling a temperature and humidity sensor (AHT10)
+
 from machine import I2C, Pin
 from AHT10 import AHT10
 
