@@ -160,7 +160,7 @@ def writeto_mem(self, addr: int, memaddr: int, buf: bytes, /, *, addrsize: int =
 ## Demonstration
 
 This section will show a on-board demonstration of using the `I2C` class to communicate
-with an external temperature and humidity sensor (AHT10).
+with an external temperature and humidity sensor (AHT10). Along with the creation of drivers for the AHT10.
 
 ### AHT10 Overview
 The AHT10 is equipped with an ASIC chip that communications with temperature and humidity sensors. It uses the I2C protocol to calibrate and read the digital output signals. 
@@ -185,4 +185,4 @@ Wire your breadboard with the RP-RP2 and push buttons to resemble the wiring dia
 
 ![i2c_wiring](../../img/i2c_demo_bb.png)
 
-### Follow the link and upload the code to your RP-RP2: [i2c_demo.py](../i2c/i2c_demo.py)
+### Follow the link and upload the code to your RP-RP2: [AHT10.py](AHT10.py) & [i2c_demo.py](i2c_demo.py)
