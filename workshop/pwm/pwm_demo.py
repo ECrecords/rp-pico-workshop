@@ -32,7 +32,7 @@ def set_duty(pwm: PWM, duty: float) -> None:
 if __name__ == '__main__':
 
     # Declare and initialize GP0 as input and pull it down
-    turn = Pin(0, mode=Pin.IN, pull=Pin.PULL_UP)
+    turn = Pin(0, mode=Pin.IN, pull=Pin.PULL_DOWN)
 
     # Declare and initialize a PWM object @ GP1
     servo = PWM(Pin(1))
