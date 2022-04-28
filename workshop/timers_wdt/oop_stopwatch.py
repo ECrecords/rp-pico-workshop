@@ -81,7 +81,7 @@ class Stopwatch:
         self.__disable()
 
 
-sw = Stopwatch(2,3,4,5)
+sw = Stopwatch(0,1,16,17)
 
 while True:
     print('{}: {}:{}:{}'.format(sw.mode, sw.min, sw.sec, sw.hsec), end='\r')
