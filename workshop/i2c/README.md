@@ -183,6 +183,8 @@ The [datasheet](AHT10_Datasheet.pdf) for the AHT10 will be used for this demo si
 
 Wire your breadboard with the RP-RP2 and push buttons to resemble the wiring diagram below.
 
-![i2c_wiring](../../img/i2c_demo_bb.png)
+<p align="center">
+    <img src="../../img/svg/i2c_demo_bb.svg" width=900>
+</p>
 
 ### Follow the link and upload the code to your RP-RP2: [AHT10.py](AHT10.py) & [i2c_demo.py](i2c_demo.py)

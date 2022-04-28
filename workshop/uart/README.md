@@ -145,6 +145,9 @@ def sendbreak(self) -> None:
 
 This section will show a on-board demonstration of using the `UART` class. This demo will require the pairing up of two separate RP-RP2.
 Wire your breadboards with the RP-RP2 to resemble the wiring diagram bellow.
-![uart_wiring](../../img/uart_demo_bb.png)
+
+<p align="center">
+    <img src="../../img/svg/uart_demo_bb.svg" width=900>
+</p>
 
 ### Follow the link and upload the code to your RP-RP2: [uart_demo.py](uart_demo.py)

@@ -41,6 +41,10 @@ def feed(self) -> None:
 
 ## Hardware Timer Demostration
 
+<p align="center">
+    <img src="../../img/svg/stopwatch_bb.svg" width=900>
+</p>
+
 ## [Python Code](oop_stopwatch.py)
 
 ## [Write Your Own Stopwatch](stopwatch_template.py)

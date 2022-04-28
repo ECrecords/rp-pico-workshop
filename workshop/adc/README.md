@@ -65,6 +65,8 @@ This section will show a on-board demonstration of using the `PWM` class. This d
   
 Wire your breadboards with the RP-RP2 to resemble the wiring diagram bellow.
 
-![gpio_wiring](../../img/adc_demo.png)
+<p align="center">
+    <img src="../../img/svg/adc_demo_bb.svg" width=900>
+</p>
 
 ### Follow the link and upload the code to your RP-RP2: [adc_demo.py](adc_demo.py)

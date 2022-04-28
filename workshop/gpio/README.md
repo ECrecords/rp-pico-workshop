@@ -153,7 +153,9 @@ This section will show a on-board demonstration of using the `Pin` class along w
 
 Wire your breadboard with the RP-RP2 and push buttons to resemble the wiring diagram below.
 
-![gpio_wiring](../../img/gpio_demo.png)
+<p align="center">
+    <img src="../../img/svg/gpio_demo_bb.svg" width=900>
+</p>
 
 ### Follow the link and upload the code to your RP-RP2: [gpio_demo.py](gpio_demo.py)
 
