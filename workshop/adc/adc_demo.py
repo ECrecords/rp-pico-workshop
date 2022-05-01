@@ -7,22 +7,23 @@
 
 from utime import sleep_ms
 from machine import PWM, ADC, Pin
+from micropython import const
 
 # The maximum period (50Hz) in nanoseconds
-MAX_PERIOD_NS = 20E6
+MAX_PERIOD_NS = const(20E6)
 
 # Minimum Duty Cycle
-MIN_DUTY = 0.02
+MIN_DUTY = const(0.02)
 # Maximum Duty Cycle
-MAX_DUTY = 0.105
+MAX_DUTY = const(0.105)
 
 # Minimum Value for ADC
-MIN_POT_VALUE = 0.0
+MIN_POT_VALUE = const(0.0)
 
 # Maximum Value for ADC
 ## ADC takes samples 0V - 3.3V using 16 bits
 ## therefore 2^16 -1 is the maximum value
-MAX_POT_VALUE = 65535.0
+MAX_POT_VALUE = const(65535.0)
 
 # General function used to calculate the
 # current duty cycle on a PWM object

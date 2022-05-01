@@ -7,19 +7,19 @@
 
 from machine import UART, Pin
 import utime
-
+from micropython import const
 # Rate at which UART communicates (bits per second)
-BAUD = 9600
+BAUD            = const(9600)
 # Num of START bits
-START_BITS = 1
+START_BITS      = const(1)
 # Num of STOP bits
-STOP_BITS = 1
+STOP_BITS       = const(1)
 # Num of PARITY bits
-PARITY_BITS = 0
+PARITY_BITS     = const(0)
 # PARITY bit type
-PARITY_TYPE = None
+PARITY_TYPE     = const(None)
 # BAUD rate converted to bytes per second
-BYTES_PER_SEC = 1/(BAUD/8)
+BYTES_PER_SEC   = const(1/(BAUD/8))
 
 if __name__ == '__main__':
 

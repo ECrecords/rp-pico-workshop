@@ -8,6 +8,7 @@
 from machine import I2C, Pin
 from aht10 import AHT10
 from ssd1306 import SSD1306_I2C
+import framebuf
 
 if __name__ == "__main__":
     # create an I2C object at GP3 and GP2

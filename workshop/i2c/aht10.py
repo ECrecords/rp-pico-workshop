@@ -7,18 +7,19 @@
 
 from utime import sleep_ms
 from machine import I2C, Pin
+from micropython import const
 
 class AHT10:
 
     # Class Constants
-    DEFAULT_ADDRESS = 0x38
-    INITIALIZATION = bytearray([0xE1, 0x08, 0x00])
-    TRIGGER_MEASUREMENT = bytearray([0xAC, 0x33, 0x00])
-    SOFT_RESET = bytearray([0xBA])
+    DEFAULT_ADDRESS     =   const(0x38)
+    INITIALIZATION      =   const(bytearray([0xE1, 0x08, 0x00]))
+    TRIGGER_MEASUREMENT =   const(bytearray([0xAC, 0x33, 0x00]))
+    SOFT_RESET          =   const(bytearray([0xBA]))
 
-    NUM_DATA_BYTES = 6
-    MEASUREMENT_WAIT = 75
-    SOFT_RESET_WAIT = 20
+    NUM_DATA_BYTES      =   const(6)
+    MEASUREMENT_WAIT    =   const(75)
+    SOFT_RESET_WAIT     =   const(20)
 
     # Default Constructor
     def __init__(self, i2c: I2C, address: int = DEFAULT_ADDRESS) -> None:
