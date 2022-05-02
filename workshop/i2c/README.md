@@ -160,7 +160,7 @@ def writeto_mem(self, addr: int, memaddr: int, buf: bytes, /, *, addrsize: int =
 ## Demonstration
 
 This section will show a on-board demonstration of using the `I2C` class to communicate
-with an external temperature and humidity sensor (AHT10). Along with the creation of drivers for the AHT10.
+with an external temperature and humidity sensor (AHT10) and an OLED display. Along with the creation of drivers for the AHT10.
 
 ### AHT10 Overview
 The AHT10 is equipped with an ASIC chip that communications with temperature and humidity sensors. It uses the I2C protocol to calibrate and read the digital output signals. 
@@ -181,10 +181,21 @@ We will be making a circuit similar to the diagram below to read the temperature
 
 The [datasheet](AHT10_Datasheet.pdf) for the AHT10 will be used for this demo since it has instructions on how to communicate with the AHT10.
 
+### OLED Display
+
+The OLED display is equipped with an SSD1306 controller which has an I2C interface. The driver for this controller was found here: [ssd1306.py](https://github.com/micropython/micropython/blob/master/drivers/display/ssd1306.py). It has been included in the files already.
+
+This specific OLED is a split display. 
+
+<p align="center">
+    <img src="../../img/ssd1306_oled.png" width=500>
+    <br/> <b> 128x64 OLED Display</b>
+</p>
+
 Wire your breadboard with the RP-RP2 and push buttons to resemble the wiring diagram below.
 
 <p align="center">
     <img src="../../img/svg/i2c_demo_bb.svg" width=900>
 </p>
 
-### Follow the link and upload the code to your RP-RP2: [AHT10.py](AHT10.py) & [i2c_demo.py](i2c_demo.py)
+### Follow the link and upload the files to your RP-RP2: [aht10.py](aht10.py) & [ssd1306.py](ssd1306.py) & [i2c_demo.py](i2c_demo.py)

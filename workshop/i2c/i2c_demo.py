@@ -41,7 +41,7 @@ if __name__ == "__main__":
     # create an AHT10 object
     sense = AHT10(i2c)
 
-    #TODO create an SSD1306_I2C object and initalize it
+    #TODO create an SSD1306_I2C object and initialize it
     
     #TODO clear the display
 
