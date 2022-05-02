@@ -49,7 +49,7 @@ if __name__ == "__main__":
     print("Current Temperature and Relative Humidity")
     while True:
         print(
-            "T: {:.3f} C, {:.3f} F \t RH: {}%".format(  sense.temperature_cel, 
+            "T: {:.3f} C, {} F \t RH: {}%".format(  sense.temperature_cel, 
                                                         "TODO", 
                                                         "TODO")
             , end='\r')

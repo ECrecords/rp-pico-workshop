@@ -6,8 +6,6 @@
 
 ### `Timer` Class Functions
 
-
-
 ## class `WDT`
 
 ### Initializing A `WDT` Object
