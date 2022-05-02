@@ -8,7 +8,22 @@
 from machine import I2C, Pin
 from aht10 import AHT10
 from ssd1306 import SSD1306_I2C
+from micropython import const
 import framebuf
+
+# Defines a function that will read image data from
+## text file and return it as a bytearray
+def image_data():
+    buffer = bytearray()
+    with open("img_data.txt", "r") as img:
+        for line in img:
+            line = line.strip(", \n")
+            line = line.replace(" ", "")
+            line = line.replace("0x", "")
+            line = line.split(",")
+            for i in line:
+                buffer.append(int(i, 16))
+    return buffer
 
 if __name__ == "__main__":
     # create an I2C object at GP3 and GP2
@@ -26,11 +41,18 @@ if __name__ == "__main__":
     # create an AHT10 object
     sense = AHT10(i2c)
 
+    #TODO create an SSD1306_I2C object and initalize it
+    
+    #TODO clear the display
+
     # display current temperature and rh onto REPL
     print("Current Temperature and Relative Humidity")
     while True:
         print(
             "T: {:.3f} C, {:.3f} F \t RH: {}%".format(  sense.temperature_cel, 
-                                                        sense.temperature_far, 
+                                                        "TODO", 
                                                         "TODO")
             , end='\r')
+
+        #TODO display image and selected data
+        ## assign button(s) to display either cel, far, or rh

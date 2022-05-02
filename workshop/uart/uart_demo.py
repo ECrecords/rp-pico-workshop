@@ -8,6 +8,7 @@
 from machine import UART, Pin
 import utime
 from micropython import const
+
 # Rate at which UART communicates (bits per second)
 BAUD            = const(9600)
 # Num of START bits
@@ -17,9 +18,9 @@ STOP_BITS       = const(1)
 # Num of PARITY bits
 PARITY_BITS     = const(0)
 # PARITY bit type
-PARITY_TYPE     = const(None)
+PARITY_TYPE     = None
 # BAUD rate converted to bytes per second
-BYTES_PER_SEC   = const(1/(BAUD/8))
+BYTES_PER_SEC   = 1/(BAUD/8)
 
 if __name__ == '__main__':
 
@@ -40,7 +41,7 @@ if __name__ == '__main__':
     while True:
 
         # if GP2 is high
-        if tx_flag:
+        if tx_flag.value():
             # Ask for string via REPL
             output_str = input("UART Message: ")
             write_bytes = bytearray(len(output_str))
@@ -57,7 +58,7 @@ if __name__ == '__main__':
             utime.sleep_ms(round(sleep_time * 1E3))
         
         # if GP2 is low
-        if rx_flag:
+        if rx_flag.value():
 
             print('Receiving: ', end='')
 

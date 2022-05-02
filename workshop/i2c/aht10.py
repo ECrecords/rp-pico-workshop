@@ -13,9 +13,9 @@ class AHT10:
 
     # Class Constants
     DEFAULT_ADDRESS     =   const(0x38)
-    INITIALIZATION      =   const(bytearray([0xE1, 0x08, 0x00]))
-    TRIGGER_MEASUREMENT =   const(bytearray([0xAC, 0x33, 0x00]))
-    SOFT_RESET          =   const(bytearray([0xBA]))
+    INITIALIZATION      =   bytearray([0xE1, 0x08, 0x00])
+    TRIGGER_MEASUREMENT =   bytearray([0xAC, 0x33, 0x00])
+    SOFT_RESET          =   bytearray([0xBA])
 
     NUM_DATA_BYTES      =   const(6)
     MEASUREMENT_WAIT    =   const(75)
@@ -70,13 +70,10 @@ class AHT10:
         # convert data to celsious using temperature transform form AHT10 documentation
         return (temp_data/(2**20))*200-50
     
-    # used to get a current measurement of the temperature in fahrenheit
+    #TODO convert celsius data to fahrenheit
     @property
     def temperature_far(self):
-        # get a current temperature in celsius
-        cel_temp = self.temperature_cel
-        # convert to fahrenheit
-        return cel_temp * (9/5) + 32
+        pass
 
     #TODO Read raw_data from the sensor and isolate the humidity data using bit manipulation
     # then use the relative humidity transforamtion from the AHT10 documentation

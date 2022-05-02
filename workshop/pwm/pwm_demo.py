@@ -10,7 +10,7 @@ from machine import PWM, Pin
 from micropython import const
 
 # The maximum period (50Hz) in nanoseconds
-MAX_PERIOD_NS = const(20E6)
+MAX_PERIOD_NS = 20E6
 
 # General function used to calculate the
 # current duty cycle on a PWM object
