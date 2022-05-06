@@ -32,7 +32,7 @@ if __name__ == '__main__':
     is_rx = False
 
     # Declares and initializes UART0 using GP0 (TX) and GP1(RX)
-    uart0 = UART(id=0, baudrate=BAUD, stop=STOP_BITS, tx=Pin(0), rx=Pin(1))
+    uart0 = UART(0, tx=Pin(0), rx=Pin(1))
 
     #   Declare and initializes flags that enable RX and TX independently
     tx_flag = Pin(2, mode=Pin.IN, pull=Pin.PULL_UP)
@@ -53,27 +53,25 @@ if __name__ == '__main__':
             uart0.write(write_bytes)
 
             # Calculates amount of time CPU must wait for UART to fully send message
-            sleep_time = BYTES_PER_SEC * (START_BITS + len(write_bytes) + PARITY_BITS + STOP_BITS)
+            sleep_time = BYTES_PER_SEC * (len(output_str))
             # CPU sleeps for msg to be fully sent
             utime.sleep_ms(round(sleep_time * 1E3))
         
         # if GP2 is low
         if rx_flag.value():
 
-            print('Receiving: ', end='')
+            #print('Receiving: ', end='')
 
             # Clear read buffer
-            read_bytes = bytearray()
+            read_bytes = bytes()
 
             # While UART has bytes waiting
             while uart0.any() > 0:
+                # set rx trigger
                 is_rx = True
 
-                # Dump byte into buffer
-                tmp = (uart0.read(1)).decode() #type: ignore 
-
-                read_bytes.append(ord(tmp))
-                # Print the received bytes via REPL
+                # append read byte to buffer
+                read_bytes += uart0.read(1) #type: ignore
             
             # If something was received
             if is_rx:
@@ -82,6 +80,8 @@ if __name__ == '__main__':
 
                 # Print received message
                 print(read_bytes.decode())
-
+            
+            utime.sleep_ms(round((BYTES_PER_SEC * 256) * 1E3))
+            
         # CPU sleeps for 1 ms
         utime.sleep_ms(1)
