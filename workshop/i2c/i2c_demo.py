@@ -27,7 +27,7 @@ def image_data():
 
 if __name__ == "__main__":
     # create an I2C object at GP3 and GP2
-    i2c = I2C(id=0, scl=Pin(1), sda=Pin(0), freq=400000)  # type: ignore
+    i2c = I2C(id=0, scl=Pin(5), sda=Pin(4), freq=400000)  # type: ignore
 
     # scan the i2c bus and store all device addresses into list
     i2c_dev = i2c.scan()
